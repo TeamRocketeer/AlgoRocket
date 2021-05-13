@@ -20,5 +20,5 @@ def solution(scoville, K):
 
 if __name__ == '__main__' :
     scoville = [1, 2, 3, 9, 10, 12]
-    k = 7
-    print(solution(scoville, k))
+    K = 7
+    print(solution(scoville, K))
