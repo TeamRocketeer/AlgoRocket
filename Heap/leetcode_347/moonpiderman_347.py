@@ -6,6 +6,8 @@ def solution_1(nums, k) :
     answer = []
     count = 0
     heapq.heapify(nums)
+    if len(nums) == k :
+        return nums
     while nums :
         what = heapq.heappop(nums)
         # print(nums)
@@ -48,6 +50,12 @@ if __name__ == '__main__' :
     k_2 = 1
     nums_3 = [1, 2]
     k_3 = 2
+    nums_4 = [3, 0, 1, 0]
+    k_4 = 1
 
     print(solution(nums_3, k_3))
+    print(solution_1(nums_3, k_3))
+    print(solution(nums_4, k_4))
+    print(solution_1(nums_4, k_4))
+
 
