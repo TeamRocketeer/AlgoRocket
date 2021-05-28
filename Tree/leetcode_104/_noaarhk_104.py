@@ -4,10 +4,18 @@ from typing import List
 
 
 class TreeNode:
-    def __init__(self, val=None, left=None, right=None):
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
+    def __str__(self):
+        ret = str(self.val) + "\n"
+        if self.left:
+            ret += str(self.left)
+        if self.right:
+            ret += str(self.right)
+        return ret
 
 
 class Solution:
@@ -34,27 +42,13 @@ class Solution:
         return depth
 
 
-def _to_tree(num_dq: collections.deque):
-    root = TreeNode()
-    current_node = root
-
-    current_node.val = num_dq.popleft()
-
-    # visited = []
-    # 방문했던 노드 뛰어넘는 코드 필요
-
-    while num_dq:
-        print(current_node.val)
-
-        current_node.left = TreeNode(num_dq.popleft()) if num_dq else None
-        current_node.right = TreeNode(num_dq.popleft()) if num_dq else None
-        if current_node.left.val:
-            current_node = current_node.left
-            continue
-        if current_node.right.val:
-            current_node = current_node.right
-            continue
-        print(current_node.val)
+def _to_tree(l, i):
+    if i >= len(l):
+        return None
+    root = TreeNode(val=l[i])
+    root.left = _to_tree(l, i * 2 + 1)
+    root.right = _to_tree(l, i * 2 + 2)
+    return root
 
 
 # def _to_tree(num_list: collections.deque):
@@ -84,6 +78,8 @@ if __name__ == '__main__':
     root = [3, 9, 20, None, None, 15, 7]
 
     # answer: 3
-    _to_tree(collections.deque(root))
-    # solution = Solution()
-    # print(solution.maxDepth(_to_tree(collections.deque(root))))
+    treenode = _to_tree(root, 0)
+
+    solution = Solution()
+
+    print(solution.maxDepth(treenode))

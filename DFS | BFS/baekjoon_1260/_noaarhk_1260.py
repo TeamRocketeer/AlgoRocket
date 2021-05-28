@@ -1,3 +1,4 @@
+import collections
 from collections import deque
 from typing import List
 
@@ -12,6 +13,16 @@ def dfs(g, start):
             visited.setdefault(node)
             stack.extend(g[node])
     return list(visited.keys())
+
+def bfs(g, start):
+    visited = {}
+    que = collections.deque()
+    que.append(start)
+    while que:
+        node = que.popleft()
+        if node not in visited:
+            visited.setdefault(node)
+            que.append(g[node])
 
 
 def solution(l: List):
@@ -28,7 +39,7 @@ def solution(l: List):
 
         for key in graph:
             graph[key].sort()
-        # print(graph)
+        print(graph)
         return graph
 
     print('DFS : ', dfs(_graph(l), v))
