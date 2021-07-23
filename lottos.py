@@ -29,6 +29,24 @@ def solution(lottos: List, win_nums: List) -> List:
 
     return hits
 
+def solution_2(lottos, win_nums):
+
+    # if 문이 아니라 딕셔너리의 키와 아이템으로 표현
+    rank = {
+        0: 6,
+        1: 6,
+        2: 5,
+        3: 4,
+        4: 3,
+        5: 2,
+        6: 1
+    }
+
+    # 포인터를 돌리는게 아닌 교집합의 갯수와 0의 갯수로 당첨 숫자를 카운트 했다.
+    a = rank[len(set(lottos) & set(win_nums)) + lottos.count(0)]
+    b = rank[len(set(lottos) & set(win_nums))]
+    return [a, b]
+
 
 if __name__ == '__main__':
     lottos_1 = [44, 1, 0, 0, 31, 25]
